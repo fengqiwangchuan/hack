@@ -1,0 +1,62 @@
+
+@font-face{
+	font-family:"myFont";
+	font-size:normal;
+	font-weight:normal;
+	src:url('../../../fonts/raphaelicons-webfont.eot') format('eot'),
+		url('../../../fonts/raphaelicons-webfont.svg') format('svg'),
+		url('../../../fonts/raphaelicons-webfont.ttf') format('truetype'),
+		url('../../../fonts/raphaelicons-webfont.woff') format('woff');
+}
+.imgcontainer{text-align: center;position: relative;}
+.imgcontainer>a.cancel{position:absolute;top:-20px;right:-48px;color:white;
+			width:30px;height:30px;
+			font-size:25px;
+			border-radius:15px;
+			line-height:30px;
+			border:1px solid white;
+			text-align:center;
+					margin-top:5px;
+					margin-right:10px;
+			cursor:pointer;}
+	.imgcontainer>a.cancel:hover{box-shadow: 0px 0px 10px #fff;}
+	.fade-enter{opacity:1;}
+	.fade-enter-active,.fade-leave-active{transition:all 0.8s ease;font-size:30px;}
+	.fade-leave-to{opacity:0;}
+.imgcontainer>h2{font-size:30px;margin-top: 25px;}
+.imgcontainer>a{display: inline-block;width: 150px;height:150px;position: relative;z-index: 1000; opacity: 0.8;text-align: center;text-decoration: none;font: 20px '楷体';color:black ;font-weight: bold;line-height: 150px;}
+.imgcontainer>a>h4{z-index: 1000;position: absolute;margin-left: 14px;}
+.imgcontainer>a>img{width: 100%;height: 100%;position: absolute;left:3px;border-radius: 50%; }
+.imgcontainer>a>input{position: absolute;right: 0;top:0;font-size: 100px;opacity: 0;z-index: 1000; }
+
+.body-container{width: 100%;}
+.body-container>.username{width: 100%;height: 50px;}
+.body-container>.username>span{padding: 10px 20px;width: 20%;border-radius: 5px;position: relative;}
+.body-container>.username>span:before{content:attr(data-icon);font-family:'myFont';font-size:40px;position: absolute;bottom: 0;left: 0;}
+.body-container>.username>input{width: 80%	;padding: 12px 20px;display: inline-block;border:1px solid #ccc;box-sizing: border-box;border-radius: 5px;font-size: 14px;letter-spacing: 3px;}
+.body-container>.username>p{position: absolute;	width: 120px;	height: 25px;	background: rgba(0,0,0,.4);	border-radius: 5px;	color: white;	font-size: 14px;	z-index: 100;	margin-top: 6px;	text-align: center;	line-height: 25px;	right: 0;}
+.body-container>.username>p:before{content: '';	width:0;	height: 0;	line-height: 0;	border-width: 6px;	border-style: dotted dashed solid dashed;	border-color: transparent;	border-bottom-color:rgba(0,0,0,.4);	position: absolute;	bottom: 100%;	left: 15%;}
+
+
+.body-container>.password{width: 100%;height: 50px;}
+.body-container>.password>span{padding: 10px 20px;width: 20%;border-radius: 5px;position: relative;}
+.body-container>.password>span:before{content:attr(data-icon);font-family:'myFont';font-size:40px;position: absolute;bottom: 0;left: 0;}
+.body-container>.password>input{width: 80%	;padding: 12px 20px;display: inline-block;border:1px solid #ccc;box-sizing: border-box;border-radius: 5px; font-size: 14px;letter-spacing: 3px;}
+.body-container>.password>p{position: absolute;	width: 120px;	height: 25px;	background: rgba(0,0,0,.4);	border-radius: 5px;	color: white;	font-size: 14px;	z-index: 100;	margin-top: 6px;	text-align: center;	line-height: 25px;	right: 0;}
+.body-container>.password>p:before{content: '';	width:0;	height: 0;	line-height: 0;	border-width: 6px;	border-style: dotted dashed solid dashed;	border-color: transparent;	border-bottom-color:rgba(0,0,0,.4);	position: absolute;	bottom: 100%;	left: 15%;}
+
+
+.body-container>.re-password{width: 100%;height: 50px;}
+.body-container>.re-password>span{padding: 10px 20px;width: 20%;border-radius: 5px;position: relative;}
+.body-container>.re-password>span:before{content:attr(data-icon);font-family:'myFont';font-size:40px;position: absolute;bottom: 0;left: 0;}
+.body-container>.re-password>input{width: 80%	;padding: 12px 20px;display: inline-block;border:1px solid #ccc;box-sizing: border-box;border-radius: 5px;font-size: 14px;letter-spacing: 3px;}
+.body-container>.re-password>p{position: absolute;	width: 120px;	height: 25px;	background: rgba(0,0,0,.4);	border-radius: 5px;	color: white;	font-size: 14px;	z-index: 100;	margin-top: 6px;	text-align: center;	line-height: 25px;	right: 0;}
+.body-container>.re-password>p:before{content: '';	width:0;	height: 0;	line-height: 0;	border-width: 6px;	border-style: dotted dashed solid dashed;	border-color: transparent;	border-bottom-color:rgba(0,0,0,.4);	position: absolute;	bottom: 100%;	left: 15%;}
+
+
+.body-container>input[type=submit]{background:#4caf50;color: white;padding: 14px 20px;margin:8px 38px;border:none;cursor: pointer;width: 80%;border-radius: 8px;box-shadow: 0 5px 8px 0  grey;font-size: 20px;font-weight: bold;}
+.body-container>input[type = submit]:active{transform: translateY(-4px);}
+
+.footer-container>input[type=checkbox]{margin-left: 40px;}
+.footer-container>span.psw{float: right;margin-right: 17px;}
+.footer-container>span.psw a{text-decoration: none;}

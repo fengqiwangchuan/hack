@@ -1,0 +1,30 @@
+/* 公共样式 */
+.content-container .substance .index-home{cursor: pointer;font-size:18px;color:#454141;text-decoration: none;}
+.content-container .substance .index-substan-data{list-style: none;width:100%;text-align: center;min-width: 900px;height:140px;}
+.content-container .substance .index-substan-data li{display:inline-block;width:20%;margin-right:30px;height:140px;background:blue;border-radius: 10px;cursor: pointer;vertical-align: top;position:relative;overflow:hidden;}
+.content-container .substance .index-substan-data li span{font-size:70px;color:#23698F;margin-top:50px;float: left;margin-left:30px;transition:1s;}
+.content-container .substance .index-substan-data li:hover span{transform:translateX(280%);}
+.content-container .substance .index-substan-data li:hover span.Carouselfigure{transform:scale(1.3);}
+.content-container .substance .index-substan-data li:hover span.hotpush{transform:rotate(360deg);}
+/*.content-container .substance .index-substan-data li:hover span.userMessage{}*/
+
+.content-container .substance .index-substan-data li:mouseout span{}
+.content-container .substance .index-substan-data li:hover span.planover{transform:translateX(280%) translateY(-180%);}
+
+@keyframes planover{
+	0%{transform:translateX(0%) translateY(0%);}
+	100%{transform:translateX(-280%) translateY(180%);}
+}  
+
+
+
+.content-container .substance .index-substan-data li.Carouselfigure{background:#0090d9;}
+.content-container .substance .index-substan-data li.hotpush{background-color:#37a8af;}
+.content-container .substance .index-substan-data li.forum{background-color:#3e739d;}
+.content-container .substance .index-substan-data li.userMessage{background-color:#f56954;}
+
+.content-container .substance .index-substan-data li em{font-style: normal;font-size:20px;color:#fff;margin-top:30px;display: inline-block;}
+.content-container .substance .index-substan-data li em>i{font-style: normal;padding-left:5px;}
+.content-container .substance .index-substan-data li a{font-size:13px;position:absolute;bottom:20px;right:10px;text-decoration: none;color:#fff;}
+
+

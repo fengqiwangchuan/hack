@@ -1,0 +1,44 @@
+/* 公共样式设置star */
+
+.aside-menu{width:auto;height:100%;box-sizing: border-box;
+	-webkit-transform: translate3d(0, 0, 0);
+      -moz-transform: translate3d(0, 0, 0);
+      -ms-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);}
+/* 公共样式设置end */
+
+/* adminmessage Star */
+.aside-menu-header{height:130px;padding-top:30px;text-align: center;}
+.aside-menu-header .heade-logo{width:80px;height:80px;display:inline-block;border:4px solid #9fabbd;border-radius: 50%;background-image: url(../../img/menu/heade.jpg);background-size: 100% 100%;transition:all 1s;transform:rotateY(0deg);}
+.aside-menu-header .heade-logo:hover{transform:rotate(360deg);}
+.aside-menu-header .admin-name{color:#9fabbd;line-height: 20px;margin:0 10px;}
+
+/* adminmessage Star */
+
+
+/* 管理员信息控制Star */
+.admin-control{height:45px;}
+.admin-control ul{text-align: center;}
+.admin-control ul li{height:45px;width:45px;display: inline-block;background-color:#0d131e;cursor:pointer; border-radius: 50%;color:#efffff;line-height: 45px;}
+.admin-control ul li:hover{background:#3A4A67;}
+/* 管理员信息控制End */
+
+
+/* 功能选择区域 Star*/
+.menu-option{margin-top:30px;font-family: '微软雅黑';}
+.aside-menu .menu-super>li{padding:0;display:block;}/*为什么设置display：block能解决li上边距问题*/
+.aside-menu .menu-super>li>div{width:100%;height:30px;color:#9fabbd;/*  */line-height:30px;cursor: pointer;display:inline-block;font-size:14px;position:relative;text-align: left;padding-left:30px;box-sizing:border-box;}
+.aside-menu .menu-super>li>div span{text-indent: 35px;}
+.aside-menu .menu-super>li>div:hover{background-color:#0d131e;}
+.aside-menu .menu-super .menu-sub li{font-size:12px;height:25px;line-height:25px;cursor: pointer;text-indent: 40px;}
+.aside-menu .menu-super .menu-sub li{color:#D2C4C4;}
+.aside-menu .menu-super>li>div>a{font-style:normal;display:inline-block;float:right;margin-right:30px;font-size:10px;}
+
+.aside-menu .menu-sub{background:#0d131e;}
+.aside-menu .menu-super .active{display:block;}
+.aside-menu .menu-super>li>div.active{background:rgba(13,19,30,.6);color:#fff;}
+.aside-menu .menu-super em{padding-right:15px;color:#0e6166;font-size:15px;}
+.aside-menu .menu-super>li>div.active a{transform:rotate(-90deg);transform-origin: center center;}
+.aside-menu .menu-sub li.active{background:#464444;}
+
+/* 功能选择区域option End */

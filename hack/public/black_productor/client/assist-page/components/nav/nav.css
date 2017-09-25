@@ -1,0 +1,41 @@
+/*nav²¿·Ö*/
+.nav{
+	height: 72px;
+	background-color:#fff;
+	position: relative;
+	
+}
+
+#nav{
+	margin-left: 80px;
+	font-size: 0;
+	position: relative;
+}
+
+#nav>li{
+	display: inline-block;
+	line-height:72px;
+	font-size: 16px;
+	margin-right: 44px;
+}
+
+#nav>li>a{
+	color: #666666;
+}
+#nav>li>a:hover{
+	color:#1499f8 ;
+}
+
+#btn{
+	width: 180px;
+	height: 36px;
+	background-color:#1499f8; 
+	position: absolute;
+	right: 74px;bottom: 16px;
+	border-radius: 25px;
+	text-align:center;
+	line-height: 36px;
+	cursor: pointer;
+	color: white;
+}
+#btn:hover{background-color: #0783dd;}

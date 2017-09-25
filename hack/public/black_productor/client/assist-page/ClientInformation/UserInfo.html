@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="../components/alert/alert.css">
+	<link rel="stylesheet" href="client/css/index.css">
+	<link rel="stylesheet" href="client/components/Personal/Personal.css">	
+	<link rel="stylesheet" href="client/components/updateMsg/updateMsg.css">
+	<link rel="stylesheet" href="client/components/changePSW/changePSW.css">
+	<link rel="stylesheet" href="client/components/Paste/Paste.css">
+</head>
+<body>
+	<div id="mySidenav" class="sidenav">
+		<span href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</span>
+		<a href="#" class="active">个人中心</a>
+		<a href="#">修改资料</a>
+		<a href="#">修改密码</a>
+		<a href="#">个人贴吧</a>	
+		<a href="http://localhost:8080/black_productor/client/index.html">返回首页</a>
+	</div>
+
+	<!-- 挂载 -->
+	<div id="app" >
+		<personal class='module' style='display:block'></personal>
+		<updatemsg class='module' ></updatemsg>
+		<changepsw class='module' ></changepsw>
+		<paste class='module'></paste>	
+		<alert></alert>
+	</div>
+	<!-- alert 模块 -->
+		<template id="alert">
+			<div class="alert-overlay" v-show= '$store.state.isShow'>
+				<div class="alert">
+					<div class="alert-header">
+						<h2>提示:</h2>
+						<span @click = '$store.commit("close")'>&times;</span>
+					</div>
+					<div class="alert-body">
+						<h2 v-text = '$store.state.msg'></h2>
+					</div>
+					<div class="alert-footer">
+						<input type="button" value="确定" @click = '$store.commit("close")'>
+					</div>
+				</div>
+			</div>
+		</template>
+	<!-- Personal模块 -->
+	<template id="personal">
+		<div class="personal">
+
+			<div class="person-head">
+				<img src="client/components/Personal/img/0.png" alt="">
+				<h3>个人中心</h3>
+				<span onclick="openNav()">&#9776; 打开</span>
+			</div>
+			<div class="person-body">
+				<div class="left">
+					<label for="" >username:</label>
+					<input type="text" v-model='config.username' disabled><br>
+					<label for="">name:</label>
+					<input type="text" v-model='config.name' disabled><br>
+					<label for="">sex:</label>
+					<input type="text" v-model='config.sex' disabled>
+				</div>
+				<div class="right">
+					<label for="">phone:</label>
+					<input type="text" v-model='config.phone' disabled><br>
+					<label for="">e-mail:</label>
+					<input type="text" v-model='config.mail' disabled><br>
+					<label for="">city:</label>
+					<input type="text" v-model='config.city' disabled><br>
+					<label for="">signature:</label>
+					<textarea name="" id="" cols="5" rows="10" v-model='config.signature' disabled></textarea>
+				</div>
+			</div>
+		</div>		
+	</template>
+	<!-- changePSW模块 -->
+	<template id="changepsw">
+		<div class="changepsw">
+			<div class="psw-head">
+				<img src="client/components/changePSW/img/headbg.png" alt="">
+				<h3>修改密码</h3>
+				<span onclick="openNav()">&#9776; 打开</span>
+			</div>
+			<div class="psw-body">
+				<div class="psw">
+					<label for="">旧密码：</label>
+					<input type="text" v-model="userPSW.oldPSW"><br>
+					<label for="">新密码：</label>
+					<input type="text"  v-model="userPSW.newPSW"><br>
+					<label for="" >确认新密码：</label>
+					<input type="text" class="last"  v-model="userPSW.renewPSW"><br>
+					<button @click="changePSW">保存</button>
+				</div>
+				<div class="hint">
+					<img src="client/components/changePSW/img/jg.png" alt="">
+					<p>1.密码由6-20位字符组成，区分大小写<br>2.需要至少包含字母、数字和特殊符号中的两种组合</p>
+					<span>(怎样设置安全性高的密码？)</span>
+					<div>
+						<b>一、密码长度为6-20个字符</b><br>
+						<b>二、设置使用英文字符、数字和符号,尽量不要有规律</b><br>
+						<b>三、定期更改密码,并做好书面交流，以免忘记</b>
+						<br>
+					</div>
+				</div>
+			</div>
+		</div>	
+	</template>
+
+	<!-- updateMsg模块 -->
+	<template id="updatemsg">
+		<div class="updatemsg">
+			<div class="msg-head">
+				<img src="client/components/updateMSG/img/headbg.png" alt="">
+				<h3>修改资料</h3>
+				<span onclick="openNav()">&#9776; 打开</span>
+			</div>
+			<div class="msg-body">
+				<div>
+					<!-- <label for="">用户名：</label>
+					<input type="text" v-model = 'config.username'><br> -->
+					<label for="">姓名：</label>
+					<input type="text" v-model = 'config.name'><br>
+					<label for="">性别：</label>
+					<input type="radio" name='sex' v-model = 'config.checked' value="男" checked>男
+					<input type="radio" name='sex' v-model = 'config.checked' value='女'>女<br>
+					<label for="">手机号：</label>
+					<input type="text" v-model = 'config.phone'><br>
+					<label for="">邮箱：</label>
+					<input type="text" v-model = 'config.mail'><br>
+					<label for="">所在地：</label>
+					<select name="" id="" v-model = 'config.selectedone'>
+						<option value="广东省" selected >广东省</option>
+						<option value="江西省"  >江西省</option>
+					</select>
+					<select name="" id="" v-model = 'config.selectedtwo'>
+						<option value="深圳市" >深圳市</option>
+						<option value="广州市" selected >广州市</option>
+						<option value="赣州市" >赣州市</option>
+						<option value="南昌市" >南昌市</option>
+					</select><br>
+					<label for="">个人描述：</label>
+					<input type="textarea"  v-model = 'config.signature'><br>
+					<input type="submit" value='保存' @click = 'send'>
+				</div>
+				<!-- <div>
+					<ul>
+						<table>
+							<thead>
+								<th>时间</th>
+								<th>内容</th>
+							</thead>
+							<tbody>
+								<tr>
+									<td>内容一</td>
+									<td>内容二</td>
+								</tr>
+							</tbody>
+						</table>
+					</ul>
+				</div> -->
+			</div>
+		</div>		
+	</template>
+	
+
+	<!-- Paste模块 -->
+	<template id="paste">
+		<div class="paste">
+			<div class="paste-head">
+				<img src="client/components/Paste/img/1.png" alt="">
+				<h3>个人贴吧</h3>
+				<span onclick="openNav()">&#9776; 打开</span>
+			</div>
+			<div class="paste-body">
+				<table class='paste-table'>
+					<caption>
+						<h2 v-text="title"></h2>
+					</caption>
+					 <thead>
+						<th v-text="caption"></th>
+						<th v-text='time'></th>
+						<th v-text='this.delete'></th>
+					</thead>
+					<tbody>
+						<tr v-for="item in this.config">
+							<td v-for="(p,index) in item" v-text='p' v-show="index!='id'">
+							</td>
+							<td><img @click = 'del(index)' src="client/components/Paste/img/3.png" alt=""></td>
+						</tr>
+					</tbody>
+				</table> 
+			</div>
+		</div>		
+	</template>
+
+	<!-- vue引用 -->
+	<script src='../../index_file/jquery-3.2.1.min.js'></script>
+	<script src="../../vue-family/vue.js"></script>
+	<script src="../../vue-family/vuex.js"></script>
+	<script src="../../vue-family/vue-resource.js"></script>
+	
+
+	<!-- 引入相关组件 -->
+	<script src = 'client/store/store.js'></script>
+	<script src = '../components/alert/alert.js'></script>
+	<script src = 'client/components/Personal/Personal.js'></script>
+	<script src = 'client/components/changePSW/changePSW.js'></script>
+	<script src = 'client/components/updateMSG/updateMSG.js'>
+	</script>
+	<script src = 'client/components/Paste/Paste.js'></script>
+	<script src='client/js/index.js'></script>
+
+	<!-- 根实例 -->
+	<script>
+		var vm = new Vue({
+			el:'#app',
+			store:store,
+			data:{
+				
+			},
+			methods:{
+				
+			}
+		})
+	</script>
+</body>
+</html>

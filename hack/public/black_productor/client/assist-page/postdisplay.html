@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="../fonts/font-awesome-4.7.0/css/font-awesome.css">
+	<link rel="stylesheet" href="postdisplay_index/posydisplay.css">
+	<link rel="stylesheet" href="components/popwindow/popwindow.css">
+	<link rel="stylesheet" href="components/alert/alert.css">
+	<link rel="stylesheet" href="components/nav/nav.css">
+	<link rel="stylesheet" href="components/question/question.css">
+	<link rel="stylesheet" href="components/page/page.css">
+	<link rel="stylesheet" href="components/search/search.css">
+
+</head>
+<body>
+	<!-- 主页面 app-->
+	<div id="app">
+		<div class="header" id="top">
+			<img src="../images/logo.png">
+			<ul>
+         		<li>
+         			<a href="./../index.html"><div class="ca-content"><h2>首&nbsp;页</h2><h3><span data-icon="1"></span>IndexPage</h3></div></a>                   
+                </li>
+                <li>
+                    <a href="#"><div class="ca-content"><h2>技术交流</h2><h3><span data-icon="2"></span>Commumication</h3></div></a>                   
+                </li>
+                 <li>
+                    <a href="#"><div class="ca-content"><h2>最新活动</h2><h3><span data-icon="3"></span>activities</h3></div></a>                   
+                </li>
+                 <li>
+                    <a href="#"><div class="ca-content"><h2>免费资源</h2><h3><span data-icon="4"></span>Sources</h3>
+                        </div></a>                   
+                </li>
+                <li>
+                    <a href="#"><div class="ca-content"><h2>礼品交换</h2><h3><span data-icon="5"></span>Changing</h3>
+                     </div></a>                    
+                </li>
+                <li>
+                	<a href="#"><div class="ca-content"><h2>App下载</h2><h3><span data-icon="6"></span>download</h3>
+                        </div></a>  
+                </li>
+  			  </ul>
+  			<div v-show="!this.$store.state.curUser" class="login" >
+				<span></span>
+				<a href="../assist-page/login.html" class="login"> 登录</a> 
+				<a href="../assist-page/register.html" class="sign-up">注册</a>
+			</div>
+  			<div v-show="this.$store.state.curUser" class="user" >
+				<span></span><span>欢迎:<a href="../assist-page/ClientInformation/UserInfo.html" v-text="this.$store.state.curUser"></a></span><a href="#" @click="clearUser" >【注销】</a>
+			</div>
+		</div>
+		<info></info>
+	<div class="footer">
+			<div class="footer-top">
+				<div><h3>学员培训</h3>
+					<ul>
+						<li>
+							<a href="#">javaEE培训</a>
+							<a href="#">Android培训</a>
+							<a href="#">PHP培训</a>
+							<a href="#">UI/UE综合设计师培训</a>
+						</li><li>
+							<a href="#">前端与移动开发</a>
+							<a href="#">C/C++培训</a>
+							<a href="#">新媒体运营/电商运营培训</a>
+							
+						</li>
+						<li>
+							<a href="#">人工智能/Python培训</a>
+							<a href="#">全栈工程师培训</a>
+							<a href="#">云计算大数据培训培训</a>
+						</li>
+					</ul>
+				</div>
+				<div><h3>关于我们</h3>
+					<a href="#">黑马概况</a>
+					<a href="#">发展历程</a>
+					<a href="#">全国	校区</a>
+				</div>
+				<div><h3>帮助信息</h3>
+					<a href="#">报名流程</a>
+					<a href="#">自学教程</a>
+					<a href="#">入学须知</a>
+				</div>
+				<div>
+					<a href="#"><img src="postdisplay_index/images/sweibo.png" alt=""><span>官方微博</span></a>
+					<a href="#"><img src="postdisplay_index/images/weixin.png" alt=""><span>官方微信</span></a>
+				</div>
+			</div>
+			<p>
+					<a href="#">Archiver |</a>
+					<a href="#">手机版 |</a>
+					<a href="#">小黑屋 |</a>
+					<a href="#">黑马程序员社区（京ICP备08001421号-2）</a>
+					<a href="#">站长统计</a>
+					<a href="#">360网站安全检测平台</a>
+			</p>
+		</div>
+	</div>
+
+	<!-- 主内容部分 -->
+	<template id="info">
+		<div class="info">
+		<div class="search">
+			<search></search>
+		</div>
+		<div class="nav">
+			<navigation></navigation>
+		</div>
+		<div class="que">
+			<questionmain></questionmain>
+		</div>
+		</div>
+	</template>
+
+	<!-- search模块 -->
+	<template id="search">
+		<div>
+		</div>
+	</template>
+
+	<!-- nav模块 -->
+	<template id="navigation">
+		<div>
+			<ul id="nav">
+				<li><a href="">技术交流</a></li>
+				<li><a href="">作品分享</a></li>
+				<li><a href="">官方发布</a></li>
+				<li><a href="">黑马图书</a></li>
+			</ul>
+			<div id="btn" @click="getFocus">
+				吐槽大会
+			</div>
+		</div>
+	</template>
+
+	<!-- page组件 -->
+	<template id='page'>
+		<div class='que-seporator'>
+			<ul>
+				<li @click="pageChange('left')" class="fa fa-arrow-left"></li>
+				<li v-for="item in pages" v-text="item" v-show="item>(pagecofig.pageGroupIndex-1)*pagecofig.pageGroupNum&&item<pagecofig.pageGroupIndex*pagecofig.pageGroupNum+1" @click="pageChange(item)" :class="{'active':item==pagecofig.curPage}">
+				</li>
+				<li @click="pageChange('right')"   class="fa fa-arrow-right"></li>
+			</ul>
+		</div>
+	</template>
+
+	<!-- questionmain模块 -->
+	<template id="questionmain">
+		<div>
+			<ul id="hot">
+					<li>最新</li>
+					<li>热帖</li>
+			</ul>
+			<div class="questionmain">
+				<div class="title">
+					<span class="w1">主题</span>
+					<span class="w2">作者</span>
+					<span class="w3">发布时间</span>
+					<span class="w4">热度</span>
+				</div>
+				<div class="message">
+
+					<span   v-for="(list,index) in $store.state.fcontent" class="message" v-show="index>=(pageConfig.curPage-1)*pageConfig.pageSize&&index<pageConfig.curPage*pageConfig.pageSize+1">
+						<span  v-text='list.message' class="m_content"></span>
+						<span v-text='list.author' class="m_author"></span>
+						<span v-text="getDate()" class="m_date"></span>
+						<span v-text='list.hot' class="m_hot"></span>
+					</span>
+
+				</div>
+				<div class="edit" v-show="$store.state.isShow">
+					<textarea id="textarea5" placeholder="在这里吐槽吧"  v-model="obj.message" maxlength="20" @input="format">
+					</textarea><!-- -->
+					<!-- <span v-text="reformat+'/20'"></span> -->
+					<button @click="send">吐槽一下</button>
+				</div>	
+
+			</div>
+			<page :pagecofig="pageConfig" @pagechange="pagechange"></page>
+		</div>
+	</template>
+	<!--popwindow组件  -->
+	<template id="popwindow">
+		<transition name="fade">
+			<div class="overlay" id="overlay">
+				<div class="content">
+					<slot name = 'header'></slot>
+					<slot name = 'body'></slot>
+					<slot name = 'footer'></slot>
+				</div>
+			</div>
+		</transition>
+	</template>
+	<!-- alert 模块 -->
+		<template id="alert">
+			<div class="alert-overlay" v-show= '$store.state.isShow'>
+				<div class="alert">
+					<div class="alert-header">
+						<h2>提示:</h2>
+						<span @click = '$store.commit("close")'>&times;</span>
+					</div>
+					<div class="alert-body">
+						<h2 v-text = '$store.state.msg'></h2>
+					</div>
+					<div class="alert-footer">
+						<input type="button" value="确定" @click = '$store.commit("close")'>
+						<a href="login.html">
+							<input type="button" value="登陆">
+						</a>
+					</div>
+				</div>
+			</div>
+		</template>
+
+
+	<!-- vue全家桶 -->
+	<!-- 引入Vue全家桶 -->
+	<script src = '../vue-family/vue.js'></script>
+	<script src = '../vue-family/vue-resource.js'></script>
+	<script src = '../vue-family/vuex.js'></script>
+	<!-- jq	 -->
+	<script src="../index_file/jquery-3.2.1.min.js"></script>
+	<!-- 仓库 -->
+
+	<script src="store/store.js"></script>
+	<!-- <script src='store/alert-store.js'></script> -->
+	<!-- vue组件相关js引入 -->
+	<script src="postdisplay_index/postdisplay.js"></script>
+	<script src='components/popwindow/popwindow.js'></script>
+	<script src='components/alert/alert.js'></script>
+	<script src='components/nav/nav.js'></script>
+	<script src='components/page/page.js'></script>
+	<script src='components/question/question.js'></script>
+	<script src='components/search/search.js'></script>
+	
+	<!-- content 主体 -->
+	<script>
+		Vue.component('info',{
+			template:'#info',
+			components:{
+				search:search,
+				navigation:navigation,
+				questionmain:questionmain,
+			}
+		});
+	</script>
+
+
+	<!-- 根实例 -->
+	<script>
+		var vm=new Vue({
+			el:'#app',
+			store:store,
+			created:function(){
+				if(window.localStorage&&window.localStorage.length!=0)
+					this.$store.state.curUser=window.localStorage.prouser;
+				// console.log(this.obj.message.length);
+				// reformat=this.obj.message.length;
+			},
+			methods:{
+				clearUser:function(){
+					this.$store.state.curUser= '';
+					localStorage.clear();
+					this.$store.state.isShow = false;
+				},
+			}
+		})
+	</script>
+</body>
+</html>

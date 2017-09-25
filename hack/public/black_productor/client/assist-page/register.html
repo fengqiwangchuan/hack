@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>注册页面</title>
+	<!-- 引入css样式 -->
+	<link href="https://unpkg.com/animate.css@3.5.1/animate.min.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="components/popwindow/popwindow.css">
+	<link rel="stylesheet" href="components/register/register.css">
+	<link rel="stylesheet" href="components/alert/alert.css">
+</head>
+<body>
+<!-- 挂载 -->
+	<div id="app">
+		<register></register>
+		<alert></alert>
+	</div>
+
+<!-- popwindow 模块 -->
+	<template id="popwindow">
+		<div class="overlay" id="overlay">
+			<div class="content">
+				<slot name='header'></slot>
+				<slot name='body'></slot>
+				<slot name='footer'></slot>
+			</div>
+		</div>
+	</template>
+<!-- alert 模块 -->
+	<template id="alert">
+		<div class="alert-overlay" v-show= '$store.state.isShow'>
+			<div class="alert">
+				<div class="alert-header">
+					<h2>提示:</h2>
+					<span @click = '$store.commit("close")'>&times;</span>
+				</div>
+				<div class="alert-body">
+					<h2 v-text = '$store.state.msg'></h2>
+				</div>
+				<div class="alert-footer">
+					<input type="button" value="确定" @click = '$store.commit("close")'>
+					<a href="login.html">
+						<input type="button" value="登陆">
+					</a>
+				</div>
+			</div>
+		</div>
+	</template>
+<!-- register 模块 -->
+	<template id="register">
+		<popwindow>
+			<div slot = 'header' class="imgcontainer">
+				<transition name="fade">
+					<a href="../index.html" class="cancel">×</a>
+				</transition>
+				<h2>Sign Up</h2>
+				<a href="">
+				<h4>点我上传头像</h4>
+				<img :src="config.headImg" alt="">
+				<input type="file" value="上传头像"></a>
+			</div>
+			<div slot = 'body' class="body-container">
+				<div class="username">
+					<span data-icon='L'></span>
+					<input  type="text"  placeholder="请输入用户名. . ." @blur = "inputBlur('username',config.username)" v-model='config.username' >
+					<p v-show="usernameErrorShow">{{usernameError}}</p>
+				</div>
+				<div class="password">
+					<span data-icon='W'></span>
+					<input type="password" placeholder="请输入密码. . ." @blur = "inputBlur('password',config.password)" v-model='config.password' >
+					<p v-show="passwordErrorShow">{{passwordError}}</p>
+				</div>
+				<div class="re-password">
+					<span data-icon='W'></span>
+					<input type="password" placeholder="请再次输入密码. . ." @blur = "inputBlur('rePassword',config.rePassword)" v-model='config.rePassword' >
+					<p v-show="rePasswordErrorShow">{{rePasswordError}}</p>
+				</div>
+				<input type="submit" value="注册" @click = "send" :disabled = 'beDisabled'>
+			</div>
+			<div slot = 'footer' class="footer-container">
+				<input type="checkbox" checked="checked">用户协议
+				<span class="psw">已有<a href="login.html">账号？</a></span>
+			</div>
+		</popwindow>
+	</template>
+
+<!-- 引用vue全家桶 -->
+	<script src = '../vue-family/vue.js'></script>
+	<script src = '../vue-family/vue-resource.js'></script>
+	<script src = '../vue-family/vuex.js'></script>
+	<script>
+		Vue.http.options.emulateJSON=false;
+		Vue.http.headers.post['Content-Type']='application/json';
+	</script>
+<!-- 引入相关组件及仓库 -->
+	<script src="components/popwindow/popwindow.js"></script>
+	<script src="components/alert/alert.js"></script>
+	<script src="components/register/register.js"></script>
+	<script src='store/store.js'></script>
+
+<!-- 根实例 -->
+	<script>
+		new Vue({
+			el:'#app',
+			store:store
+		})
+	</script>
+</body>
+</html>
+

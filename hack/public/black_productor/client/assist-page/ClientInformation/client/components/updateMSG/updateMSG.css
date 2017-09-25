@@ -1,0 +1,67 @@
+.updatemsg{display: none; width: 100%;height: 100%;background: url(img/bodybg.jpg) no-repeat;background-size: 100%;}
+
+.updatemsg>.msg-head{width: 100%;height: 10%;display: block;border-bottom: 1px solid grey;}
+.updatemsg>.msg-head>img{margin-top: 3px;margin-left: 20px;}
+.updatemsg>.msg-head>h3{position: absolute;left:90px;top:0px;}
+.updatemsg>.msg-head>span{position: absolute;top:10px;right: 25px;font-size:30px;cursor:pointer;}
+
+.updatemsg>.msg-body{width: 100%;height: 85%;position: relative;}
+.updatemsg>.msg-body>div{width: 40%;height: 80%;background: url(img/0.jpg) no-repeat ;
+	background-size: 175%;
+	border:2px solid black;
+	border-radius: 16px;
+	position: absolute;
+	right: 180px;
+	top:20px;
+	padding:40px 0px;
+	text-align: center;
+	vertical-align: middle;
+	color: black;
+	box-shadow: 2px 10px 10px 2px black;
+}	
+.updatemsg>.msg-body>div>label{
+	position: absolute;
+	font-size: 18px;
+	left: 70px;
+	margin-top:8px;
+	vertical-align: middle;
+}
+.updatemsg>.msg-body>div>input,.updatemsg>.msg-body>div>select{
+	background-color: #f5e79c;
+	height: 30px;
+	font-size: 16px;
+	border:none;
+	border-radius: 5px;
+	margin-top: 5px;
+	margin-left:80px;
+	margin-bottom: 5px;
+	vertical-align: middle;
+	box-shadow: 3px 5px 5px 0 black;
+
+}
+.updatemsg>.msg-body>div>input:focus{
+	background-color: #fcf5db;
+}
+.updatemsg>.msg-body>div>input[type=radio]{
+	box-shadow: 0 0 0 ;
+	margin-top: 5px;
+	width: 15px;
+	height: 15px;
+	vertical-align: middle;
+}
+.updatemsg>.msg-body>div>select{
+	transform: translateX(15px);
+	margin-left: 50px;
+}
+.updatemsg>.msg-body>div>input[type=textarea]{
+	width: 200px;
+	height: 80px;
+}
+.updatemsg>.msg-body>div>input[type=submit]{
+	width: 155px;
+	height: 40px;
+	margin-top: 10px;
+}
+.updatemsg>.msg-body>div>input[type=submit]:active{
+	transform: translateY(-4px);
+}

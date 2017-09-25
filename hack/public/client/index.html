@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>admin</title>
+	<link rel="stylesheet" href="css/index.css">
+	<link rel="stylesheet" href="css/animate.css">
+	<link rel="stylesheet" href="component/popwindow/popwindow.css">
+	<link rel="stylesheet" href="component/alert/alert.css">
+	<link rel="stylesheet" href="component/menu/menu.css">
+	<link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.css">
+	<link rel="stylesheet" href="component/nav/nav.css">
+	<link rel="stylesheet" href="component/index-substance/index-substance.css">
+	<link rel="stylesheet" href="component/mian-content/componentChild/Carouselfigure.css">
+	<link rel="stylesheet" href="component/mian-content/hotpush/hotpush.css">
+	<link rel="stylesheet" href="component/mian-content/hotpushwindow/hotpushwindow.css">
+	<link rel="stylesheet" href="component/mian-content/hotpush/paging/pagin.css">
+</head>
+<body>
+	<div class="common">
+		<div id="app">
+			<transition name="menus">
+				<aside class="content-menu" v-show="$store.state.menu.menuShow" >
+					<aside-menu></aside-menu>
+				</aside>
+			</transition>
+		
+			<!-- 中间内容区域 -->
+			<div :class="{'container-move-enter':!$store.state.menu.menuShow,'content-container':true}" >
+
+				<div class="content-nav">
+					<container-nav></container-nav>
+				</div>
+				<!-- 主要内容显示区域 -->
+				<substance  class="substance"></substance>
+			</div>
+			<alert></alert>
+		</div>
+	</div>
+	
+	<!-- 弹窗组件 -->
+	<!-- popwindow组件 -->
+	<template id='popwindow'>
+		<transition name="fade">
+			<div class="overlay" v-show="isShow">
+				<div class='content'>
+					<!-- 分发内容 -->
+					<slot name="header"></slot>
+					<slot name="body"></slot>
+					<slot name="footer"></slot>
+				</div>
+			</div>
+		</transition>
+	</template>
+	<!-- alert组件 -->
+	<template id='alert'>
+		<popwindow :is-show='$store.state.alert.isShow'>
+			<div slot="header" class='alert-header'>
+				<span @click='$store.commit("alert/close")'>×</span>
+				<h2>提示:</h2>
+			</div>
+			<div slot="body" class="alert-body">
+				<h2 v-text="$store.state.alert.msg"></h2>
+			</div>
+			<div slot="footer" class='alert-footer'>
+				<input type="button" value="确定" @click='$store.commit("alert/close")'>
+			</div>
+		</popwindow>
+	</template>
+
+	<!-- menu组件 -->
+	<template id="aside-menu">
+		<div class="aside-menu">
+			<!-- 菜单栏设置 -->
+			<!-- 管理员信息显示 -->
+			<section class="aside-menu-header">
+				<span class="heade-logo"></span>
+				<h5 class="admin-name" v-text="title">welcom back</h5>
+			</section>
+			<!-- 管理员信息操作页  -->
+			<section class="admin-control">
+				<ul>
+					<li class="fa fa-history" @click="gotobefore"></li>
+					<li class="fa fa-life-buoy"></li>
+					<li class="fa fa-power-off" @click="loginout"></li>
+				</ul>
+			</section>
+			<!-- option选项控制菜单栏 -->
+			<!--  v-text="menuList"	 -->
+			<section class="menu-option">
+				<ul class="menu-super">
+					<li v-for="(item,index) in menuList">
+						<div @click="togglemenu(item)" :class="{'active':item.isshow}">
+							<em :class="['fa',fontawes[index]]"></em>
+							<span v-text="item.superMenu">这是菜单一</span>
+							<a><</a>
+						</div>
+						<transition enter-active-class="zoomInLeft" leave-active-class="zoomOutRight">
+							<ul class="menu-sub animated active" v-show="item.isshow">
+								<li v-for="(option,i) in item.subMenu" v-text="option" :class="{'active':i==item.subchild}" @click="subMActive(item,i,option)">子菜单一</li>
+							</ul>
+						</transition>
+					</li>
+				</ul>
+			</section>
+		</div>
+	</template>
+
+	<!-- nav组件 -->
+	<template id="container-nav">
+		<div class="right-content-nav">
+			<ul>
+				<li class="toggleSide fa fa-th-list" @click="move"></li>
+				<li class="logomessage">BOMONZOOKA</li>
+				<li class="navSearch">
+					<input type="text" placeholder="Search">
+				</li>
+				<li class="remindMessage">
+					<ul>
+						<li class="fa fa-envelope-open activity" title="将进入活动管理"></li>
+						<li class="fa fa-volume-up hotpush" title="信息推送管理"></li>
+						<li class="fa fa-picture-o Carouselfigure"  title="将进入图片管理服务"></li>
+						<li class="fa fa-star-half-empty forum" title="将进入论坛管理"></li>
+						<li class="fa fa-server user" title="将进入管理员信息设置"></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</template>
+	
+	<!-- 内容存放的组件，每个数据表内容都存放在这个组件中 -->
+	<template id="substance">
+		<section class="content">
+			<!-- 首页展示内容 -->
+			<transition enter-active-class="animated fadeInUp" leave-active-class="animated fadeOutDown">
+				<index-substance v-show="showPage=='index'"></index-substance><!--    -->
+			</transition>
+			<!-- 轮播图活动广告等展示 -->
+			<main-content :show-page="showPage"></main-content>
+		</section>	
+	</template>
+
+	
+
+	<!-- 后台管理的首页显示 -->
+	<template id="index-substance">
+		<div class="index-substance">
+			<a class="fa fa-home index-home" href="#"></a>
+			<ul class="index-substan-data">
+				<li class="Carouselfigure">
+					<span class="fa fa-image Carouselfigure"></span>
+					<em><i v-text="imageMsg.imageAnimate">5</i>张</em>
+					<a href="#">images</a>
+				</li>
+
+				<li class="hotpush">
+					<span class="fa fa-toggle-left hotpush"></span>
+					<em><i v-text="hotpush.hotpushAnimate">20</i>条</em>
+					<a href="#">hotpush</a>
+				</li>
+				<li class="forum">
+					<span class="fa fa-space-shuttle forum"></span>
+					<em><i v-text="forum.forumAnimate">0</i>条</em>
+					<a href="#">forum</a>
+				</li>
+				<li class="userMessage"  >
+					<span :class="{'planover': true,'fa':true,'fa-send':true,'userMessage':true}"></span>
+					<em><i v-text="user.userAnimate">0</i>条</em>
+					<a href="#">user</a>
+				</li>
+			</ul>	
+			<div id="myChart" :style="{width: '30%', height: '400px',float:'left',marginLeft:'100px'}"></div>
+			<div id="myChart2" :style="{width: '35%', height: '400px',float:'left',marginLeft:'100px'}"></div>
+		</div>	
+	</template>
+
+	<!-- 前台内容的主要页面数据修改 -->
+	<template id="main-content">
+		<div class="main-content">
+			<!-- 轮播图管理页 -->
+			<transition enter-active-class="animated fadeInUp" leave-active-class="animated fadeOutDown">
+				<div v-show="showPage=='Carouselfigure'" class="Carouselfigureanimate">
+					<a class="fa fa-home index-home" href="../client/index.html"></a>
+					<Carouselfigure :key="'Carouselfigure'"></Carouselfigure>
+				</div>
+			</transition>
+			<!-- employment管理页面  -->
+			<transition enter-active-class="animated fadeInUp" leave-active-class="animated fadeOutDown">
+				<div class="employment" v-show="showPage=='employment'">
+				<!--   -->
+					<a class="fa fa-home index-home" href="../client/index.html"></a>
+					<employment :key="'employment'"></employment>
+				</div>
+			</transition>
+			<!-- learning组件 -->
+			<transition enter-active-class="animated fadeInUp" leave-active-class="animated fadeOutDown" >
+				<div class="learning" v-show="showPage=='learning'">
+					<a class="fa fa-home index-home" href="../client/index.html"></a>
+					<learning :key="'learning'"></learning>
+				</div>
+			</transition>
+			<!-- classactive管理页 -->
+			<transition enter-active-class="animated fadeInUp" leave-active-class="animated fadeOutDown" >
+				<div class="classactivity" v-show="showPage=='classactivity'">
+					<a class="fa fa-home index-home" href="../client/index.html"></a>
+					<classactivity :key="'classactivity'"></classactivity>
+				</div>
+			</transition>	
+			<!-- forum -->
+			<transition enter-active-class="animated fadeInUp" leave-active-class="animated fadeOutDown" >
+				<div class="classactivity" v-show="showPage=='forum'">
+					<a class="fa fa-home index-home" href="../client/index.html"></a>
+					<forum  :key="'forum'"></forum>
+				</div>
+			</transition>
+			<!-- user -->
+			<transition enter-active-class="animated fadeInUp" leave-active-class="animated fadeOutDown" >
+				<div class="classactivity" v-show="showPage=='user'">
+					<a class="fa fa-home index-home" href="../client/index.html"></a>
+					<user   :key="'user'"></user>
+				</div>
+			</transition>
+		</div>
+	</template>
+	
+
+	<!-- 轮播图组组件 -->
+	<template id="Carouselfigure">
+		<div class="main-content-Carouselfigure" >	
+				<div class="addContent">
+					<a href="#" class="addcontent-btn" @click="toggleadd">新增</a>
+					<transition enter-active-class="animated fadeInUp" leave-active-class="animated fadeOutDown">
+						<div class="addCarousefigure" v-show="insertData.isShow">
+							<!-- <label for="Carousel">id:<input type="text" id="Carouselid" v-model="insertData.id"></label> -->
+							<label for="Carouselsrc">src:<input type="text" id="Carouselsrc"  v-model="insertData.src"></label>
+							<label for="Carouselcontent">content:<input type="text" id="Carouselcontent"  v-model="insertData.content"></label>
+							<input type="button" value="新增" @click="addData">
+						</div>	
+					</transition>	
+				</div>
+			<ul class="Carousel-content">
+				<li v-for="(item,index) in items.imgMsg">
+					<span class="Carousel-imgs" :style="{backgroundImage:'url('+imgfieldSrc+item.src+')'}"></span>
+					<textarea name="" id="" cols="30" rows="10"  :disabled="item.isDisabled" v-model="item.content"></textarea>
+					<div class="Carousel-control">
+						<input type="text" v-model="item.modelSrc" v-on:blur="changeMsg(item)"  :disabled="item.isDisabled"
+						@keyup.enter="changeMsg(item)">
+						<a @click="delitem(item)" class="fa fa-trash-o"></a>
+						<a @click="toggleWays(item,index)" :class="{'fa':true,'fa-refresh':item.doWhat=='修改','fa-save':item.doWhat=='保存'}"></a>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</template>
+
+
+	<!-- 推送消息组件 -->
+	<template id="hotpush">
+		<div class="hotpush">
+			<div class="hotpush-option">
+				<!-- <div class="dosometing">
+					<select name="" id="" class="selectContent">
+						<option value="none">none</option>
+						<option value="All">all</option>
+					</select>
+					<input type="button" value="删除">
+				</div> -->
+				<div class="hotpush-search">
+					<label :for="'search-'+search.name" v-for="(search,index) in field.fields" :class="'search-'+search.name">
+						<span v-text="search.name+':'"></span>
+						<input type="text" :id="'search-'+search.name" v-model="search.defVal" :class="'search-'+search.name" v-if="search.type!='select'">
+
+						<select name="" :id="'search-'+search.name" v-model="search.defVal" :class="'search-'+search.name" v-else>
+							<option v-for="option in search.options" v-text="option.name" :value="option.value"></option>
+						</select>
+					</label>
+
+					<input type="button" class="search-btn" value="搜索" @click="searchItem">
+					<input type="button" class="add-btn" value="新增" @click="showhotPopwwindow" v-if="field.isAdd">
+				</div>
+			</div>
+
+			<table class="hotpus-table">
+				<thead>
+					<tr class="Titlemessage">
+						<th v-for="(item,index) in field.headers" :class="'Titlemessage-'+field.headClass[index]" v-text="item" ></th>
+
+					</tr>
+				</thead>
+				
+				<tbody class="hotpus-table-tbody">
+					<tr v-for="item in artices" :class="{'hotpush-active':item.isDisabled}">
+						<td  v-for="oItem in field.fields" :class="'td-'+oItem.name">
+							<input type="text" v-model="item[oItem.name]" :class="'hotpush-'+oItem.name" :disabled="item.isDisabled" v-if="!oItem.type">
+			
+							<select name="" id="" :class="'hotpush-options'" :disabled="item.isDisabled" v-model="item.isHot" v-else-if="oItem.type=='select'">
+								<option value="true">true</option>
+								<option value="false">false</option>
+							</select>
+			
+							<textarea name="" id="" cols="30" rows="10" :class="'hotpush-'+oItem.name" :disabled="item.isDisabled"  v-else v-model="item.title"></textarea>
+						</td>
+						<td class="td-opreation">
+							<span class="hotpush-del" @click="delitem(item)">删除</span>
+							<span class="hotpush-revise" @click="toggleSave(item)" v-text="item.toggleSave"></span>
+						</td>
+					</tr>	
+				</tbody>
+			</table>
+
+			<paging :hotpush-name="hotpushName" @get-data="getData"></paging>
+			<hotpushwindow @add-item="addItem" :hotpush-name="hotpushName" v-if="field.isAdd"></hotpushwindow>
+		</div>
+	</template>
+	
+
+	<!-- 分页组件 -->
+	<template id="paging">
+		<div class="hotpust-paging">
+			<ul class="paging-list">
+				<li class="fa fa-arrow-left" @click="pageChange('left')"></li>
+				<li v-for="(item,i) in pages" v-show="item<=pageConfig.pageGroupIndex*pageGroupNum&&item>=(pageConfig.pageGroupIndex-1)*pageGroupNum+1" v-text="item" @click="pageChange(item)" :class="{'active':pageConfig.curPage==item}">
+				</li>
+				<li class="fa fa-arrow-right" @click="pageChange('right')"></li>
+			</ul>
+		</div>
+	</template>
+
+
+	<!-- 推送消息新增弹窗 -->
+	<template id="hotpushwindow">
+		<div>
+			<popwindow :is-show='$store.state.hotpuswindow.isShow'>
+				<div slot="header" class='alert-header'>
+					<span @click='$store.commit("hotpuswindow/close")'>×</span>
+					<h2>新增内容</h2>
+				</div>
+				<div slot="body" class="hotpushwindow-body">
+					<ul>
+						<li>
+							<label for="">data:</label>
+							<input type="text" v-model="state.data">
+						</li>
+						<li>
+							<label for="">src:</label>
+							<input type="text" v-model="state.src">
+						</li>
+						<li>
+							<label for="">isHot:</label>
+							<select v-model="state.isHot">
+								<option value="true">true</option>
+								<option value="false">false</option>
+							</select>
+						</li>
+						<li class="textareaLi">
+							<label for="">title:</label>
+							<textarea name="" id="" cols="30" rows="10" v-model="state.title"></textarea>
+						</li>
+					</ul>
+				</div>
+				<div slot="footer" class='alert-footer'>
+					<input type="button" value="确定" @click="addItem">
+				</div>
+			</popwindow>
+		</div>
+	</template>
+
+
+	<!-- employment组件 -->
+	
+	<template id="employment">
+		<div class="employment">
+			<hotpush :hotpush-name="'employment'"></hotpush>
+		</div>
+	</template>
+	
+	<!-- 学习组件 -->
+	<template id="learning">
+		<div class="employment">
+			<hotpush :hotpush-name="'learning'"></hotpush>
+		</div>
+	</template>
+	
+	<!-- 班级动态组件 -->
+	<template id="classactivity">
+		<div class="employment">
+			<hotpush :hotpush-name="'classactivity'"></hotpush>	
+		</div>
+	</template>
+
+	<!-- 帖子组件 -->
+	<template id="forum">
+		<div class="employment">
+			<hotpush :hotpush-name="'forum'"></hotpush>	
+		</div>
+	</template>
+	
+	<!-- 用户信息组件 -->
+	<template id="user">
+		<div class="employment">
+			<hotpush :hotpush-name="'user'"></hotpush>	
+		</div>
+	</template>
+	
+
+	<!-- vue全家桶 -->
+	<script src="js/vue.js"></script>
+	<script src="js/vue-resource.js"></script>
+	<script src="js/vuex.js"></script>
+	<script src="js/tween.js"></script>
+	<script src="js/echarts.common.min.js"></script>
+	<!-- Vuex数据仓库引入 -->
+	<script src="store/alert-store.js"></script>
+	<script src="store/menu-store.js"></script>
+	<script src="store/substance-store.js"></script>
+	<script src="store/Carouselfigure-store.js"></script>
+	<script src="store/hotpuswindow-store.js"></script>
+	<script src='store/hotpus-store.js'></script>
+	<script src="store/employment-store.js"></script>
+	<script src="store/store.js"></script>
+
+
+	<!-- vue组件相关js引入 -->
+	<script src="component/popwindow/popwindow.js"></script>
+	<script src="component/alert/alert.js"></script>
+	<script src='component/menu/menu.js'></script>
+	<script src="component/nav/nav.js"></script>
+	
+	<!-- 主要展示内容组件 -->
+	<script src="component/mian-content/componentChild/Carouselfigure.js"></script>
+	<script src="component/mian-content/hotpush/paging/paging.js"></script>
+	<script src="component/mian-content/hotpushwindow/hotpushwindow.js"></script>
+	<script src="component/mian-content/hotpush/hotpush.js"></script>
+	<script src="component/mian-content/employment/employment.js"></script>
+	<script src="component/mian-content/learning/learning.js"></script>
+	<script src="component/mian-content/classactivity/classactivity.js"></script>
+	<script src="component/mian-content/forum/forum.js"></script>
+	<script src="component/mian-content/user/user.js"></script>
+	<script src="component/mian-content/mian-content.js"></script>
+	
+	<!-- 服务器首页控件 -->
+	<script src="component/index-substance/index-substance.js"></script>
+	<script src='component/substance/substance.js'></script>	
+
+	<!-- VUE组件-->
+	<script>
+		Vue.prototype.$echarts = echarts;
+		var vm = new Vue({
+			el:'#app',
+			data:{
+				
+			},
+			computed:{
+			},
+			store:store,
+			methods:{
+				
+			}
+		});
+	</script>
+
+</body>
+</html>

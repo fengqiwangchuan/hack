@@ -1,0 +1,10 @@
+.employment .hotpushwindow-body{min-width: 350px;min-height:200px;}
+.employment .hotpushwindow-body ul{list-style: none;}
+.employment .hotpushwindow-body ul li{height:20px;margin-top:20px;text-align: center;vertical-align: top;position: relative;}
+.employment .hotpushwindow-body ul li label{width:70px;display: inline-block;}
+.employment .hotpushwindow-body ul li input{border:1px solid #B1B1B1;height:100%;width:170px;outline: none;}
+.employment .hotpushwindow-body ul li select{height:100%;width:170px;}
+.employment .hotpushwindow-body ul li textarea{width:170px;height:60px;resize: none;border:1px solid #B1B1B1;outline: none;display: inline-block;}
+
+.employment .hotpushwindow-body ul li.textareaLi label{height:60px;transform:translateY(-45px);}
+	

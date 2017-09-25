@@ -1,0 +1,17 @@
+.push{position:relative;}
+.push>div.title{ height:60px; line-height: 60px;width:100%;background:#F6F2F6;opacity: 1}
+.push>div.title>span{text-align:center;color:#9A8E8E;font-family: '微软雅黑'; font-weight: bold;
+cursor:pointer;box-sizing: border-box;
+	border-left:1px solid #D8D7D7;	font-size:16px;display: inline-block;width: 33%;}
+.push>div.title>span:hover{font-size:18px;color:#8E3939;}
+.push>div.title>span.active{background:rgba(240,240,240,.9);color:#D9BBBB;}
+.push>ul.hotcontent{background:rgba(240,240,240,.7);display:none;width: 100%;height: 460px;overflow-y:auto;}
+.push>ul.active{display:block;position:relative;background:rgba(240,240,240,.9);}
+
+.push>ul>li{font-size:14px;margin:18px 30px 0 40px;line-height:26px;}
+.push>ul>li:first-child{margin-top:0;}
+.push>ul>li>a{color:#736666;cursor: pointer;}
+
+.push>div.info{background:#f00;left:-100%;width:300px;height: 200px;margin-top:-130%;}
+.push>div.info:first-child{top:0;}
+.push>div.info:nth-child(2){top:18px;}

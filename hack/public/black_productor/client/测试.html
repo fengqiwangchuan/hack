@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="app">
+		<div v-text="'测试内容'">
+			
+		</div>
+	</div>
+	<script src="./vue-family/vue.js"></script>
+	<script src="./vue-family/vue-resource.js"></script>
+	<script>
+		var vm = new Vue({
+			el:'#app',
+			created:function(){
+				this.$http({
+					url:"http://localhost:8080/proscenium/proscenium/update",
+					method:'POST',
+					data:'lala'
+				}).then(function(res){
+					console.log(res.data);
+				});
+			}
+		});
+	</script>
+</body>
+</html>

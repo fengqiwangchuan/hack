@@ -1,0 +1,28 @@
+.contactus{}
+.contactus>div.contitle{ width: 100%;height: 50px;background:#FDF9F9;line-height: 50px;}
+.contactus>div.contitle>span{ background:#ECE5E5;width:33.3%;color:#FFF;display:inline-block;text-align: center;
+	font-weight: bold;font-size:16px;cursor:pointer;border-left:1px solid #D8D7D7;box-sizing: border-box;}
+.contactus>div.contitle>span.active{background:#F3F2F2;color:#998A8A;}
+.contactus>div.contitle>span:hover{color:#EFD424;}
+.contactus>div.context{background:#f3f2f2;height: 290px;width: 100%;overflow:hidden;}
+.contactus>div.context>div{width: 100%;height: 100%;}
+
+.contactus>div.context>div.context1{margin:0 auto;}
+.contactus>div.context>div.context1>ul{width: 100%;font-size:0;}
+.contactus>div.context>div.context1>ul>li{font-size:16px; display: inline-block;width:33%;padding:40px 0;text-align:center;border-bottom: 1px solid #DBD5D5}
+.contactus>div.context>div.context1>ul>li>img{display:block;margin-left:40px;}
+.contactus>div.context>div.context1>h2{width: 100%;padding:10% 20% 0;font-size:28px;}
+.contactus>div.context>div.context1>p{color:#7C7B7B;font-size:14px;padding:5px 20% 0;text-indent: 1em;}
+
+.contactus>div.context>div.context2>a{font-size:16px; display: inline-block;width:33%;padding:50px 0;text-align:center;}
+.contactus>div.context>div.context2>a>img{display:block;margin-left:50px;width: 100px;height: 100px;}
+.contactus>div.context>div.context2>a>span{display:block; /*transform: translateX(8%);*/ margin-top:10px; width: 100%;padding-left:40px;color:#83D896;}
+.contactus>div.context>div.context2>a>span:hover{color:#CB5B9F;}
+
+.contactus>div.context>div.context3{font-size:0;}
+.contactus>div.context>div.context3>ul{display:inline-block;width: 40%;text-indent: 1em;font-size:16px;margin:5% 0 0 7%;}
+.contactus>div.context>div.context3>ul>li{ width: 100%;padding:6px 0; border:1px solid #9183A1;list-style:circle;
+	box-sizing: border-box;margin-top:30px;margin-left:10px;padding-left:5px;}
+.contactus>div.context>div.context3>ul>li:last-child{padding-left:10px;}
+.contactus>div.context>div.context3>ul>li>a{color:#787777;}
+.contactus>div.context>div.context3>ul>li>span{margin-left:20%;font-size:16px;}

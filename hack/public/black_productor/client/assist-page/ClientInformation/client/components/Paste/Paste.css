@@ -1,0 +1,38 @@
+.paste{width: 100%;height: 100%; display: none;background:url(img/bg.jpg)no-repeat;background-size: 110%;}
+
+.paste>.paste-head{width: 100%;height: 10%;display: block;border-bottom: 1px solid grey;}
+.paste>.paste-head>img{margin-top: 3px;margin-left: 20px;}
+.paste>.paste-head>h3{position: absolute;left:90px;top:0px;}
+.paste>.paste-head>span{position: absolute;top:10px;right: 25px;font-size:30px;cursor:pointer;}
+
+.paste>.paste-body{width: 100%;height: 85%;display: inline-block;position: relative;}
+
+.paste-table,.paste-table *{padding:0;margin:0px;}
+.paste-table{margin-top:30px;width: 70%;border:2px solid grey;box-shadow: 0 4px 4px 0px grey;}
+.paste-table>caption{
+	width:100%;height:40px;
+	background-color:#4b484f;
+	border-radius: 6px;
+}
+.paste-table>caption>h2{
+	text-align: center;
+	color:black;height:40px;line-height:40px;
+	font-size:22px;
+
+}
+.paste-table,.paste-table th,.paste-table td{
+	border:2px solid black;
+	border-collapse:collapse;
+	text-align: center;
+	border-radius: 6px;
+}
+.paste-table>tr{
+	width: 100%;
+}
+.paste-table tr>th,.paste-table>tr>td{
+	width: 15%;
+	padding:9px 10px;
+}
+.paste-table tr>th:first-child,.paste-tabletr td:first-child{
+	
+}

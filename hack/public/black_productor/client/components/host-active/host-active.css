@@ -1,0 +1,8 @@
+.active>div{width: 100%;height: 100%;}
+.active>div>img.toggleSrc{width: 100%;height: 100%;animation-name:toggleSrc;animation-timing-function: ease;
+	animation-duration: 0.6s;animation-fill-mode: forwards;
+}
+@keyframes toggleSrc{
+	to{transform:translateX(0%);}
+	from{transform:translateX(100%);}
+}

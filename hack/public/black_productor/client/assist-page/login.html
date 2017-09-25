@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>登陆页面</title>
+	<!-- 引入css文件 -->
+	<link rel="stylesheet" href="components/popwindow/popwindow.css">
+	<link rel="stylesheet" href="components/login/login.css">	
+	<link rel="stylesheet" href="components/alert/alert.css">
+</head>
+<body>
+<!-- 挂载 -->
+	<div id="app">
+		<login></login>
+		<alert></alert>
+	</div>
+	
+<!-- popwindow模块 -->
+	<template id="popwindow">
+		<transition name="fade">
+			<div class="overlay" id="overlay">
+				<div class="content">
+					<slot name = 'header'></slot>
+					<slot name = 'body'></slot>
+					<slot name = 'footer'></slot>
+				</div>
+			</div>
+		</transition>
+	</template>
+<!-- alert 模块 -->
+		<template id="alert">
+			<div class="alert-overlay" v-show= '$store.state.isShow'>
+				<div class="alert">
+					<div class="alert-header">
+						<h2>提示:</h2>
+						<span @click = '$store.commit("close")'>&times;</span>
+					</div>
+					<div class="alert-body">
+						<h2 v-text = '$store.state.msg'></h2>
+					</div>
+					<div class="alert-footer">
+						<input type="button" value="确定" @click = '$store.commit("close")'>
+						<a href="login.html">
+							<input type="button" value="登陆">
+						</a>
+					</div>
+				</div>
+			</div>
+		</template>
+<!-- login模块 -->
+	<template id="login">
+		<popwindow>
+			<div slot = 'header' class="imgcontainer">
+				<h2>Welcome to back !</h2>
+				<img :src="headImg" alt="">
+			</div>
+			<div slot = 'body' class="body-container">
+				<div class="username">
+					<span data-icon='L'></span>
+					<input  type="text"  placeholder="请输入用户名. . ." v-model='config.username'  @blur = "inputBlur('username',config.username)">
+					<p class="errmsg" v-show='usernameErrorShow'>{{usernameError}}</p>
+				</div>
+				<div class="password">
+					<span data-icon='W'></span>
+					<input type="password"  placeholder="请输入密码. . ." v-model='config.password'   @blur = "inputBlur('password',config.password)">
+					<p class="errmsg" v-show='passwordErrorShow'>{{passwordError}}</p>
+				</div>
+				<input type="submit" value="登录" @click ='send' :disabled='beDisabled'>
+				<input type="checkbox" checked="checked">记住我
+				<a href="../index.html" class="cancelbtn">取消  </a>
+			</div>
+			<div slot = 'footer' class="footer-container">
+				<span class="psw">忘记<a href="#">密码？</a> </span>
+				<span class="psw">快速<a href="register.html">注册</a> | </span>
+				<span class="manager"><a href="http://localhost:8080/client/login/login.html">管理员登录</a> |</span>
+
+			</div>
+		</popwindow>
+	</template>
+
+<!-- 引入Vue全家桶 -->
+	<script src = '../vue-family/vue.js'></script>
+	<script src = '../vue-family/vue-resource.js'></script>
+	<script src = '../vue-family/vuex.js'></script>
+<!-- 引入相关组件及仓库 -->
+	<script src="components/popwindow/popwindow.js"></script>
+	<script src="components/alert/alert.js"></script>
+	<script src="components/login/login.js"></script>
+	<script src='store/store.js'></script>
+<!-- 根实例 -->
+	<script>
+		new Vue({
+			el:'#app',
+			store:store			
+		})
+	</script>
+
+</body>
+</html>

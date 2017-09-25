@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>login</title>
+	<link rel="stylesheet" href="css/login.css">
+	<link rel="stylesheet" href="../css/font-awesome-4.7.0/css/font-awesome.css">
+	<link rel="stylesheet" href="../css/animate.css">
+	<link rel="stylesheet" href="../component/alert/alert.css">
+	<link rel="stylesheet" href="../component/popwindow/popwindow.css">
+</head>
+<!-- 疑问，使用form表单提交的数据，前台怎么接收后台发过来的数据，
+	 该登录页是使用ajax的方式发送数据和，接收数据的
+ -->	
+<body>
+	<div id="app">
+		<login></login>
+		<alert></alert>
+	</div>
+
+	<script src="../js/vue.js"></script>
+	<script src="../js/vue-resource.js"></script>
+	<script src="../js/vuex.js"></script>
+
+
+	<!-- Vuex数据仓库引入 -->
+	<script src="../store/alert-store.js"></script>
+	<script src="js/store.js"></script>
+	
+	<!-- 组件引入 -->
+	<script src="../component/popwindow/popwindow.js"></script>
+	<script src="../component/alert/alert.js"></script>
+	<script src="js/login.js"></script>
+
+
+
+
+	<!-- 弹窗组件 -->
+	<!-- popwindow组件 -->
+	<template id='popwindow'>
+		<transition name="fade">
+			<div class="overlay" v-show="isShow">
+				<div class='content'>
+					<!-- 分发内容 -->
+					<slot name="header"></slot>
+					<slot name="body"></slot>
+					<slot name="footer"></slot>
+				</div>
+			</div>
+		</transition>
+	</template>
+	<!-- alert组件 -->
+	<template id='alert'>
+		<popwindow :is-show='$store.state.alert.isShow'>
+			<div slot="header" class='alert-header'>
+				<span @click='$store.commit("alert/close")'>×</span>
+				<h2>提示:</h2>
+			</div>
+			<div slot="body" class="alert-body">
+				<h2 v-text="$store.state.alert.msg"></h2>
+			</div>
+			<div slot="footer" class='alert-footer'>
+				<input type="button" value="确定" @click='$store.commit("alert/close")'>
+			</div>
+		</popwindow>
+	</template>
+	<!-- 登录页面设置 -->
+	<template id="login">
+		<transition enter-active-class="rubberBand" leave-active-class="hinge">
+			<div class="login-wrapper animated"  v-show="wrappershow">
+				<div class="login-title" >
+					<span class="login-logo"></span>
+					<h3 class="login-title-message">后台管理系统</h3>
+				</div>
+				<div class="login-content">
+					<form action="http://localhost:8080/login/user/test" method="post">
+						<ul>
+							<li>
+								<div class="login-username">
+									<label for=""><span class="fa fa-user"></span><input type="text" name="username" placeholder='用户名' v-model="username" v-on:blur="usjudge" @keyup="usjudge"></label>
+									<span class="showerr" v-show="usererror">用户名格式错误</span>
+								</div>
+							</li>
+							<li>
+								<div  class="login-password">
+									<label for=""><span class="fa fa-key"></span><input type="password" name="password" placeholder='密码' v-model="password" v-on:blur="pswjudeg" @keyup="pswjudeg"></label>
+									<span class="showerr" v-show="pswderror" >请输入密码</span>
+								</div>
+							</li>
+							<li class="login-test">
+								<div  class="login-idcode">
+									<label for=""><span class="fa fa-magic"></span><input type="text" name="idcode" placeholder='验证码' v-model="idcode" v-on:blur="idcojudeg" @keyup="idcojudeg"></label>
+									<span class="showerr" v-show="idcodeer"
+									>格式错误</span>
+								</div>
+								<div class="login-idnum" @click="rtnNum">
+									<label for=""><span v-text="idnum"></span></label>
+								</div>
+							</li>
+							<li class="submit">
+								<div><input type="submit" value="登录"  @click="ispass($event)"></div>
+							</li>
+						</ul>
+							
+					</form>
+					<div class="transfer">
+						<a href="../../black_productor/client/assist-page/login.html">切换用户登录</a>
+					</div>
+				</div>
+			</div>
+
+		</transition>
+	</template>
+	
+
+	<script>
+		var vm = new Vue({
+			el:'#app',
+			store:store
+		});
+	</script>
+
+</body>
+</html>

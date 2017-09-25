@@ -1,0 +1,5 @@
+.hotpust-paging{height:50px;margin-top:40px;position:absolute;bottom:60px;width:100%;margin-left:-40px;}
+.hotpust-paging .paging-list{list-style: none;width: 100%;text-align: center;}
+.hotpust-paging .paging-list>li{display: inline-block;height:40px;width:40px;background:#575456;border-radius: 50%;margin-top:5px;color:#FFFFFF;font-size:20px;line-height: 40px;cursor: pointer;margin-left:15px;}
+.hotpust-paging .paging-list>li.active{background:#F06969;}
+.hotpust-paging .paging-list>li:hover{background:#E9A64F;}

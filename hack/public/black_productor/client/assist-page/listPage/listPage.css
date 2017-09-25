@@ -1,0 +1,52 @@
+html,body,ul,p{margin:0;padding:0;}
+ul{list-style: none}
+.list-body{border:1px solid #000; background:url(images/listbg.png);
+	margin:10px auto; width:1006px; height:770px;
+}
+.list-body>div.all{margin-top:13%;/*border:1px solid #f00;*/width: 100%;overflow:hidden;}
+.list-body>div.all>div.title{float:left;margin-left:12px;width: 180px;width: 19%;}
+.list-body>div.all>div.title>.bigtitle{color:#4c5d27; width:100%;height:50px;line-height:60px;text-align:center;font-size:28px;margin-top:5px;}
+.list-body>div.all>div.title>.bigtitle>a{}
+
+
+
+.list-body>div.all>div.title>ul{margin-top:75px;text-align:center;margin-left:-5px;border:1px solid #e3cfb8;border-radius: 5px}
+.list-body>div.all>div.title>ul>li{height:33.8px;font-size:16px;position:relative;
+	line-height:33.8px;width: 100%;background:#e3cfb8;color:#fff;border-bottom:1px solid #f0f0e8;cursor: pointer;
+	text-shadow: 1px 1px 5px #569283;
+}
+.list-body>div.all>div.title>ul>li.active{background:#e4dde5;}
+.list-body>div.all>div.title>ul>li:hover:after{
+	content:'';
+	position: absolute;
+	left:20px;top:50%;
+	transform: translateY(-50%);
+	border-style:solid dashed dotted dashed ;
+	border-width:10px;
+	border-color:transparent;
+	border-left-color:#4c9522;
+}
+.list-body>div.all>div.contnets{float:left;margin-left:12%;margin-top:6%;width:58%;/*border:1px solid #f00;*/position:relative;}
+.list-body>div.all>div.contnets>span{position:absolute;left:0;top:0;display:none;height:36px;color:#274801;font-size:20px;  border-bottom:2px solid #183b01;width:100%;}
+.list-body>div.all>div.contnets>span.active{display:inline-block;position:absolute;left:0;top:0;}
+.list-body>div.all>div.contnets>h4.time{position:absolute;right:30px;top:0;display:none;}
+.list-body>div.all>div.contnets>h4.show{display:inline-block;margin-top:-25px;}
+.list-body>div.all>div.contnets>p{color:#361700;line-height:30px;margin-top:60px; font-family: '微软雅黑'; text-indent: 2em;display:none;}
+.list-body>div.all>div.contnets>p.active{display:inline-block;}
+/*
+.mainMenu>li:hover{}
+.mainMenu>li{width: 100%;background:#ecf;color:#fff;}
+.mainMenu>li>span{padding:10px 0px;display:block; width: 100%;border:1px solid #ecf;text-indent: 2em;color:#fff;font-size:18px;}
+.mainMenu>li>span:hover{border-top-color:#fff;border-bottom-color:#fff;cursor:pointer;background:#ff0;}
+.subMenu{display:none;margin-top:10px;padding-bottom:10px;text-align:center;color:#468378;text-shadow: 1px 1px 5px #569283;}
+.subMenu>li{position:relative;height:30px;line-height:30px;}
+.subMenu>li:hover:after{
+	content:'';
+	position: absolute;
+	left:20px;top:50%;
+	transform: translateY(-50%);
+	border-style:solid dashed dotted dashed ;
+	border-width:10px;
+	border-color:transparent;
+	border-left-color:#000;
+}*/

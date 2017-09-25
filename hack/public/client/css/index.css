@@ -1,0 +1,54 @@
+/* 公共样式star */
+body,html,ul{padding:0;margin:0;}
+body,html{height: 100%;width:100%;overflow-x: hidden;  background-image: url(../img/index/background-bgImg.png); }
+.common{width:100%;min-width: 1250px;height: 100%;margin:0 auto;}
+#app{height:100%;}
+/* 滚动条样式设置 */
+::-webkit-scrollbar{width: 10px;height: 10px;}
+::-webkit-scrollbar-corner{background-color: rgba(0,0,0,0);}
+::-webkit-scrollbar-thumb{
+	background-color: #ddd;
+	border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover{background-color: #ccc;}
+
+
+/* 页面动画star */
+
+/* 页面动画end */
+
+/* 侧边栏样式 */
+ #app .content-menu{height: 100%;width:200px;background-color:#222a38;position:fixed;left:0;z-index: 3;overflow-y:auto;overflow-x: 	hidden; 
+ 	-webkit-transform: translate3d(0, 0, 0);
+   -moz-transform: translate3d(0, 0, 0);
+   -ms-transform: translate3d(0, 0, 0);
+   transform: translate3d(0, 0, 0);} 
+
+.menus-enter{margin-left:-200px;}
+.menus-enter-active,.menus-leave-active{transition:all 1s ease;}
+.menus-leave-to{margin-left:-200px;}  
+
+/* 侧边栏样式end */
+
+
+
+/* nav导航条star */
+
+/* 当控制菜单栏的menuShow,让菜单栏隐藏时，内容区域块也跟着变化，将内容区域向左移动到边界处，并且这里使用的宽度是auto，所有当内容区域距离右边距离发生变化的时候宽度自动适应 */
+.content-container{width:auto;height:100%;transition:all 1s ease;margin-left:200px;
+ 	/* */}
+.content-container .content-nav{height: 50px;background-color:#fff;width:100%;position:fixed;margin-right:200px;overflow:hidden;z-index: 1; 
+	/* -webkit-transform: translate3d(0, 0, 0);
+      -moz-transform: translate3d(0, 0, 0);
+      -ms-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0); */}
+.container-move-enter{margin-left:0;}
+/* nav导航条end */
+
+
+
+/* 中间内容区域 */
+.content-container .substance{padding:74px 44px 100px 44px;}
+.content-container .substance .main-content>div{ position:absolute;top:74px;}
+
+/*  */

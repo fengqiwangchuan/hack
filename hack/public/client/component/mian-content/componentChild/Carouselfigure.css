@@ -1,0 +1,29 @@
+/* 公共样式 */
+.main-content-Carouselfigure{}
+.Carouselfigureanimate{}
+.main-content-Carouselfigure .Carousel-content{list-style: none;transition: all 1s;}
+.main-content-Carouselfigure .Carousel-content li{vertical-align: top;height:132px;float:left;width:400px;position:relative;overflow:hidden;margin-left:30px;margin-top:30px;}
+.main-content-Carouselfigure .Carousel-content li .Carousel-imgs{display:inline-block;height:130px;width:200px;background:url(../../../img/Carouselfigure/1.jpg);background-size:100% 100%;transition: 1s;vertical-align: top;border-radius: 30px;}
+.main-content-Carouselfigure .Carousel-content li .Carousel-imgs:hover{transform:scale(1.04);}
+.main-content-Carouselfigure .Carousel-content li .Carousel-control{display:inline-block;position:absolute;top:50px;right:10px;text-align: center;}
+.main-content-Carouselfigure .Carousel-content li .Carousel-control a{cursor: pointer;fon}
+
+.main-content-Carouselfigure .Carousel-content li textarea{
+resize: none;outline: none;height:125px;width:100px;border-radius: 10px;color:#7A5D5D;font-size:1px;}
+.main-content-Carouselfigure .Carousel-content li textarea[disabled]{}
+.main-content-Carouselfigure .Carousel-content li input[disabled]{background:rgba(255,255,255,1);}
+.main-content-Carouselfigure .Carousel-content li input{outline:none;display:block;width:50px;}
+.main-content-Carouselfigure .Carousel-content li a{border:1px solid block;}
+
+.main-content-Carouselfigure .addContent{padding-left:50px;}
+.main-content-Carouselfigure .addCarousefigure{font-size:15px;font-style:normal;margin-left:60px;margin-top:3px;display: inline-block;}
+.main-content-Carouselfigure .addContent .addcontent-btn{text-decoration: none;color:#B99E9E;font-size:25px;}
+.main-content-Carouselfigure .addCarousefigure label{margin-left:35px;font-size:20px;color:#B18686;vertical-align: bottom;}
+.main-content-Carouselfigure .addCarousefigure input{outline: none;}
+.main-content-Carouselfigure .addCarousefigure input#Carouselid{width:50px;}
+
+
+
+
+
+

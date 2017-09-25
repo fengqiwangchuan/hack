@@ -1,0 +1,56 @@
+.personal{display: none; width: 100%;height: 100%;background: url(img/2.jpg) no-repeat;background-size:58%;margin:auto;background-position: center;}
+
+.personal>.person-head{width: 100%;height: 10%;display: block;border-bottom: 1px solid grey;}
+.personal>.person-head>img{margin-top: 3px;margin-left: 20px;}
+.personal>.person-head>h3{position: absolute;left:90px;top:0px;}
+.personal>.person-head>span{position: absolute;top:10px;right: 25px;font-size:30px;cursor:pointer;}
+
+.personal>.person-body{width: 100%;height: 85%;position: relative;}
+.personal>.person-body>.left{
+	width: 160px;
+	height: 200px;
+	display: block;
+	position: absolute;
+	left:40%;
+	top:25%;	
+}
+.personal>.person-body>.left>label{
+	font:18px 'Comic Sans MS' ,'楷体';
+}
+.personal>.person-body>.left>input{
+	background-color: rgba(0,0,0,0);
+	border:none; 
+	width:130px;
+	font-size: 16px;
+	margin-left: 20px;
+	margin-top: 5px;
+}
+.personal>.person-body>.right{
+	width: 240px;
+	height: 315px;
+	position: absolute;
+	display: block;
+	left:56%;
+	top:25%;
+}
+.personal>.person-body>.right>label{
+	font:18px 'Comic Sans MS' ,'楷体';
+}
+.personal>.person-body>.right>input,.personal>.person-body>.right>textarea{
+	background-color: rgba(0,0,0,0);
+	border:none; 
+	width:194px;
+	font-size: 16px;
+	margin-left: 20px;
+	margin-top: 5px;
+}
+.personal>.person-body>.left>input[disabled]{background:rgba(0,0,0,0);color:#1D1B1B;}
+.personal>.person-body>.right>input[disabled]{background:rgba(0,0,0,0);color:#1D1B1B;}
+
+.personal>.person-body>.right>textarea[disabled]{color:#1D1B1B;}
+
+.personal>.person-body>.right>textarea{
+	overflow: hidden;
+	width: 150px;
+	height: 80px;
+}

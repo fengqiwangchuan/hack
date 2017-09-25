@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>index</title>
+
+	<link rel="stylesheet" href="index_file/index.css">
+	<link rel="stylesheet" href="fonts/font-awesome-4.7.0/css/font-awesome.css">
+	<link rel="stylesheet" href="components/banner/Carouselfigure.css">
+	<link rel="stylesheet" href="components/host-active/host-active.css">
+	<link rel="stylesheet" href="components/sendmessage/sendmessage.css">
+	<link rel="stylesheet" href="components/recommed-read/recommed-read.css">
+	<link rel="stylesheet" href="components/resource/resource.css">
+	<link rel="stylesheet" href="components/host-push/host-push.css">
+	<link rel="stylesheet" href="components/contactus/contactus.css">
+	<link rel="stylesheet" href="components/backtoTop/backtoTop.css">	
+	<link rel="stylesheet" href="../../client/css/font-awesome-4.7.0/css/font-awesome.css">
+	<script src="index_file/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+	<!-- 主页面 app-->
+	<div id="app">
+		<div class="header" id="top">
+			<img src="images/logo.png">
+			<ul>
+         		<li>
+         			<a href="#"><div class="ca-content"><h2>首&nbsp;页</h2><h3><span data-icon="1"></span>IndexPage</h3></div></a>                   
+                </li>
+                <li>
+                    <a href="#"><div class="ca-content"><h2>技术交流</h2><h3><span data-icon="2"></span>Commumication</h3></div></a>                   
+                </li>
+                 <li>
+                    <a href="#"><div class="ca-content"><h2>最新活动</h2><h3><span data-icon="3"></span>activities</h3></div></a>                   
+                </li>
+                 <li>
+                    <a href="#"><div class="ca-content"><h2>免费资源</h2><h3><span data-icon="4"></span>Sources</h3>
+                        </div></a>                   
+                </li>
+                <li>
+                    <a href="#"><div class="ca-content"><h2>礼品交换</h2><h3><span data-icon="5"></span>Changing</h3>
+                     </div></a>                    
+                </li>
+                <li>
+                	<a href="#"><div class="ca-content"><h2>App下载</h2><h3><span data-icon="6"></span>download</h3>
+                        </div></a>  
+                </li>
+  			  </ul>
+  			<div v-if="!curUser" class="login" >
+				<span></span>
+				<a href="assist-page/login.html" class="login"  :key="'login'">登录</a> |
+				<a href="assist-page/register.html" class="sign-up" :key="'sign-up'">注册</a>
+			</div>
+  			<div v-else class="user" :key="'user'">
+				<span></span><span>欢迎:<a href="assist-page/ClientInformation/UserInfo.html" v-text="this.curUser" :key="curUser"></a></span><a href="#" @click="clearUser" :key="clearUser">【注销】</a>
+			</div>
+		</div>
+
+		<mainbody></mainbody>
+		<backtoTop></backtoTop>
+		<div class="footer">
+			<div class="footer-top">
+				<div><h3>玫瑰园介绍</h3>
+					<ul>
+						<li>
+							<a href="#">javaEE培训</a>
+							<a href="#">Android培训</a>
+							<a href="#">PHP培训</a>
+							<a href="#">UI/UE综合设计师培训</a>
+						</li><li>
+							<a href="#">前端与移动开发</a>
+							<a href="#">C/C++培训</a>
+							<a href="#">新媒体运营/电商运营培训</a>
+							
+						</li>
+						<li>
+							<a href="#">人工智能/Python培训</a>
+							<a href="#">全栈工程师培训</a>
+							<a href="#">云计算大数据培训培训</a>
+						</li>
+					</ul>
+				</div>
+				<div><h3>关于我们</h3>
+					<a href="#">玫瑰花园</a>
+					<a href="#">发展历程</a>
+					<a href="#">全国校区</a>
+				</div>
+				<div><h3>帮助信息</h3>
+					<a href="#">报名流程</a>
+					<a href="#">自学教程</a>
+					<a href="#">入学须知</a>
+				</div>
+				<div>
+					<a href="#"><img src="images/sweibo.png" alt=""><span>官方微博</span></a>
+					<a href="#"><img src="images/weixin.png" alt=""><span>官方微信</span></a>
+				</div>
+			</div>
+			<p>
+					<a href="#">Archiver |</a>
+					<a href="#">手机版 |</a>
+					<a href="#">小黑屋 |</a>
+					<a href="#">黑马程序员社区（京ICP备08001421号-2）</a>
+					<a href="#">站长统计</a>
+					<a href="#">360网站安全检测平台</a>
+			</p>
+		</div>
+	</div>
+
+	<!-- mainbody部分 -->
+	<template id="mainbody">
+		<div class="mainbody">
+			<div class="banner">
+				<div class="main-banner">
+					<Carouselfigure></Carouselfigure>
+				</div>
+				<div class="banner-right">
+					<div class="postdisplay">
+						<a href="assist-page/postdisplay.html" data-icon="U">发帖</a>
+						<a href="#" data-icon="]">签到</a>
+					</div>
+					<host-active></host-active>
+				</div>
+			</div>
+			<div class="container">
+				<div class="con-left">
+					<recommed-read></recommed-read>
+					<resource></resource>
+				</div>
+				<div class="con-right">
+					<host-push></host-push>
+					<contactus></contactus>
+				</div>
+			</div>
+		</div>
+	</template>
+
+	<!-- Carouselfigure 轮播图部分-->
+	<template id="figure">
+		<div class="carousel-wrap" id="carousel">
+		   		 <!-- 轮播图列表 -->
+		    <transition-group tag="ul" class='slide-ul' name="list">
+		      <li v-for="(list,index) in slideList" :key="index" v-show="index===currentIndex" @mouseenter="stop" @mouseleave="go">
+		        <a :href="list.clickUrl">
+		          	<img :src="list.image">
+		          	<span v-text="list.context"></span>
+		        </a>
+		      </li>
+		    </transition-group>
+		     <!-- 轮播图位置指示 -->
+		    <div class="carousel-items">
+		      <span v-for="(item,index) in slideList.length" :class="{active:index===currentIndex}" @mouseover="change(index)"></span>
+		    </div>
+		</div>
+
+	</template>
+	<!-- host-active 热门活动部分-->
+	<template id="active">
+		<div class="active">
+				<div class="title">
+					<p v-for="title in activity.titles" v-text="title"></p>
+					<span v-text="getdate()" class="date"></span><span>更新</span>
+				</div>
+				
+			<div class="Img">
+				<img  v-for="(item,index) in activity.srcs" v-show="curIndex" :src="item" :class="{toggleSrc:curIndex==index+1}" alt="images/hot2.jpg">
+			</div>
+		</div>
+	</template>
+
+	<!-- recommed-read部分（推荐阅读） -->
+	<template id="recommed-read">
+		<div class="read">
+
+			<h4>预见未来</h4>
+			<div class="readImg"><a href="#"  v-for="item in reads.readImgs">
+				<img :src="item" alt="加载失败">
+				<span class="ImgInfo">这是图片详细信息</span>
+				</a></div>
+			<ul v-for="list in reads.readTexts ">
+				<li v-for="text in list.text1"><a href="#" v-text="text"></a></li>
+				<li v-for="text in list.text2" class="text2"><a href="#" v-text="text"></a></li>
+			</ul>
+		</div>
+	</template>
+	
+	<!-- resource部分(左边三个内容板块) -->
+	<template id="resource">
+		<div class="resource">
+			<p class="static">今日:<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>| 昨日:<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>| 帖子:<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>| 会员:<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>| 欢迎新会员:<span>&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+			<div class="contents">
+				<p v-for="title in titles" v-text="title"></p>
+				<!-- studyContent -->
+				<div class="Content">
+					<div class="con1"  v-for="(items,index) in studyConfig">	
+						<span v-for="src in items.srcs" :class="['logoimg','fa',src]"></span>
+						
+						<!-- <img v-for="src in items.srcs" :src="src" alt=""> -->
+						<ul class="ul1">
+							<li v-for="con in items.cons" v-text="con"></li>
+						</ul>
+					</div>
+				</div>
+				<!-- schoolcontent -->
+				<div class="Content">
+					<div class="con1" v-for="(items,index) in schoolConfig">
+						<!-- <img v-for="src in items.srcs" :src="src" alt=""> -->
+						<span v-for="src in items.srcs" :class="['logoimg','fa',src]"></span>
+						<ul class="ul1">
+							<li v-for="con in items.cons" v-text="con"></li>
+						</ul>
+					</div>
+				</div>
+				<div class="Content">
+					<div class="con1" v-for="(items,index) in officialConfig">
+						<img v-for="src in items.srcs" :src="src" alt="">
+						<ul class="ul1">
+							<li v-for="con in items.cons" v-text="con"></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</template>
+
+	<!-- hotpush部分，热门推送 -->
+	<template id="host-push">
+		<div class="push">
+			<div class="title">
+				<span v-for="(title,index) in hotpushConfig.title" v-text="title" @click="curIndex=index" :class="{'active':curIndex==index}"></span>
+			</div>
+			<ul  v-for="(items,index) in hotpushConfig.contents" :class="{'active':curIndex==curIitem(index),'hotcontent':true}" >
+				<li v-for="con in items"><a  v-text="con" :title="con" @click="toggoleArtice(con,index)"></a></li>
+			</ul>
+			<!-- <div class="info" v-for="info in $store.state.push.state.contents">
+				<span v-for="con in info" v-text="con"></span>
+			</div> -->
+		</div>
+	</template>
+	<!-- contactus联系我们 -->
+	<template id="contactus">
+		<div class="contactus" id="contents">
+			<div class="contitle">
+				<span v-for="(title,index) in titles" v-text="title" @click="curIndex=index" :class="{'active':curIndex==index}"></span>
+			</div>
+			<div class="context" >
+				<div class="context1" v-show="curIndex==0">
+					<ul>
+						<li><img src="images/s_customer.png" alt=""><span>在校咨询</span></li>
+						<li><img src="images/s_map.png" alt=""><span>来校地址</span></li>
+						<li><img src="images/s_service.png" alt=""><span>报名流程</span></li>
+					</ul>
+					<h2>400-618-9090</h2>
+					<p>青青岛社区全国咨询热线</p>
+				</div>
+				<div class="context2" v-show="curIndex==1">
+					<a href="#"><img src="images/sweibo.png" alt=""><span>官方微博</span></a>
+					<a href="#"><img src="images/weixin.png" alt=""><span>官方微信</span></a>
+				</div>
+				<div class="context3" v-show="curIndex==2">
+					<ul>
+						<li><a href="#">就业薪资</a><span>&gt;</span></li>
+						<li><a href="#">技术交流</a><span>&gt;</span></li>
+						<li><a href="#">社区活动</a><span>&gt;</span></li>
+					</ul>
+					<ul>
+						<li><a href="#">免费资源</a><span>&gt;</span></li>
+						<li><a href="#">学习路线</a><span>&gt;</span></li>
+						<li><a href="#">礼品兑换</a><span>&gt;</span></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</template>
+	
+	<!-- 返回顶部 -->
+	<template id="backtoTop">
+		<transition name="fat">
+			<div id="totop">
+				<div class="backtoTop" id="backtoTop" @click="backtoTop">返回顶部</div>
+			</div>
+		</transition>	
+	</template>
+
+	<!-- vue全家桶 -->
+	<script src="vue-family/vue.js"></script>
+	<script src="vue-family/vuex.js"></script>
+	<script src="vue-family/vue-resource.js"></script>
+
+	<!-- store文件 -->
+	<script src="store/read-store.js"></script>
+	<script src="store/push-store.js"></script>
+	<script src="store/store.js"></script>
+
+	<!-- js文件 -->
+	<script src="components/banner/Carouselfigure.js"></script>
+	<script src="components/host-active/host-active.js"></script>
+	<script src="components/sendmessage/sendmessage.js"></script>
+	<script src="components/recommed-read/recommed-read.js"></script>
+	<script src="components/resource/resource.js"></script>
+	<script src="components/host-push/host-push.js"></script>
+	<script src="components/contactus/contactus.js"></script>
+	<script src="components/backtoTop/backtoTop.js"></script>
+	<script src="index_file/indexjq.js"></script>
+	<script src="index_file/index.js"></script>
+
+	<!-- 根实例 -->
+	<script>
+		var vm=new Vue({
+			el:'#app',
+			store:store,
+			data:{
+				store:[],
+				curUser:'',
+			},
+			components:{backtotop:backtoTop},
+			created:function(){
+				var memory={};
+				if(window.localStorage)	{   //从localStorage储存中读取数据
+					memory.user=window.localStorage.prouser;
+					memory.password=window.localStorage.propassword;
+				}
+				this.store.push(memory);
+				for(var i=0;i<this.store.length;i++){
+					console.log(this.store[i].user);
+					this.curUser=this.store[i].user;
+					if(!this.store[i].user) return;
+					this.curUser=this.curUser;
+				}
+				console.log(this.store);  
+				this.$http({  //把本地存储的用户名密码发送给服务器
+					url:this.$store.state.url+'postPersonalInfo',
+					method:'post',
+					data:{
+						store:this.store
+					}
+				});
+				 // localStorage.clear();
+			},
+			methods:{
+				clearUser:function(){
+					this.curUser = '';
+					localStorage.clear();
+				}
+			}
+		})
+	</script>
+</body>
+</html>
