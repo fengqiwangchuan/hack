@@ -107,7 +107,7 @@
   
   3.前台显示的数据需要在mongo数据库中创建。
   
-  4.想要看到后台管理页面，cmd命令下运行node app.js，在浏览器端打开 http://localhost:8080 端口即可查看.
+  4.想要看到后台管理页面，cmd命令下运行node app.js，在浏览器端打开 http://localhost:5050 端口即可查看.
   
   
 
