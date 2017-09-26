@@ -146,5 +146,6 @@
        <a href="https://yidongying.github.io/hack/hack/public/black_productor/client/index.html">前台页面</a>
        
   后台截图：
-    hack/screensheet.png
+  ![image](https://github.com/yidongying/hack/raw/master/hack/screensheet.png)
+    
   
