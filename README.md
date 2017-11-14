@@ -144,8 +144,8 @@
   
   静态预览：
        <a href="https://yidongying.github.io/hack/hack/public/black_productor/client/index.html">前台页面</a>
-       http://tclound.com/Nodejs-FBMS/public/client/index.html#
- 后台预览：<a href="http://tclound.com/Nodejs-FBMS/public/client/index.html">后台界面</a> 
+  后台预览：<a href="http://tclound.com/Nodejs-FBMS/public/client/index.html">后台界面</a> 
+ 
   后台截图：
   ![image](https://github.com/yidongying/hack/raw/master/hack/screensheet.png)
     
